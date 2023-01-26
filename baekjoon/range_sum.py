@@ -11,3 +11,4 @@ for i in range(N):
 for j in range(K):
     A, B = map(int, sys.stdin.readline().split())
     print(L[B-1] - L[A-2])
+
