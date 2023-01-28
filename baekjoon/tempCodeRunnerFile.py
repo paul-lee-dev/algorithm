@@ -1,20 +1,27 @@
+# 11724
 import sys
-N = int(sys.stdin.readline())
 
-count = 1
-start = 1
-end = 1
-sum = 1
-while end != N:
-    if sum < N:
-        end += 1
-        sum += end
-    elif sum == N:
-        end += 1
+N, M = map(int, sys.stdin.readline().split())
+A = [[]*(N+1)]
+count = 0
+
+visited = [False] * (N+1)
+
+
+def DFS(v):
+    visited[v] = True
+    for i in A[v]:
+        if not visited[i]:
+            DFS(i)
+
+
+for _ in range(M):
+    s, e = map(int, sys.stdin.readline().split())
+    A[s].append(e)
+    A[e].append(s)
+
+for i in range(1, N+1):
+    if not visited[i]:
         count += 1
-        sum += end
-    else:
-        sum -= start
-        start += 1
-
+        DFS[i]
 print(count)
