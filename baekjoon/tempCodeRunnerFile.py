@@ -1,27 +1,20 @@
-# 11724
+# 1253
 import sys
 
-N, M = map(int, sys.stdin.readline().split())
-A = [[]*(N+1)]
+N = int(sys.stdin.readline())
+A = list(map(int, sys.stdin.readline().split()))
+A.sort()
 count = 0
 
-visited = [False] * (N+1)
+for i in range(N):
+    j, k = 0, N - 1
+    while j < k:
+        if A[j] + A[k] == A[i]:
+            if j != i and k != i:
+                count += 1
+        elif A[j] + A[k] < A[i]:
+            j += 1
+        else:
+            k -= 1
 
-
-def DFS(v):
-    visited[v] = True
-    for i in A[v]:
-        if not visited[i]:
-            DFS(i)
-
-
-for _ in range(M):
-    s, e = map(int, sys.stdin.readline().split())
-    A[s].append(e)
-    A[e].append(s)
-
-for i in range(1, N+1):
-    if not visited[i]:
-        count += 1
-        DFS[i]
 print(count)
